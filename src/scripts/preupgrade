@@ -1,0 +1,5 @@
+#!/bin/sh
+
+touch /tmp/pPA.upgrade
+
+exit 0

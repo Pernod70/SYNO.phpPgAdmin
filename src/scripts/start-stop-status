@@ -1,0 +1,53 @@
+#!/bin/sh
+
+SZD_PGA="/var/packages/phpPgAdmin"
+DESKTOP="/usr/syno/synoman/webman/3rdparty/phpPgAdmin"
+phpPgAdminTarget="${SZD_PGA}/target"
+phpPgAdminUI="${phpPgAdminTarget}/ui"
+DSM_INDEX_ADD="/usr/syno/bin/pkgindexer_add"
+DSM_INDEX_DEL="/usr/syno/bin/pkgindexer_del"
+
+case "$1" in
+	start)
+		rm -f $DESKTOP
+		if [ ! -z "$SYNOPKG_PKGNAME" -a -n "$SYNOPKG_DSM_VERSION_MAJOR" -a $SYNOPKG_DSM_VERSION_MAJOR -ge 4 ]; then
+			ln -sf ${phpPgAdminUI} ${DESKTOP}
+			${DSM_INDEX_ADD} ${phpMyAdminUI}/index.conf
+		else
+			ln -sf ${phpMyAdminTarget}/desktop ${DESKTOP}
+		fi
+
+		RunMySQL=`/bin/get_key_value /etc/synoinfo.conf runmysql`
+		if [ "x$RunMySQL" != "xyes" ]; then
+			logger -p user.err -t phpMyAdmin "MySQL is not running."
+		fi
+		;;
+	stop)
+		if [ -n "$SYNOPKG_DSM_VERSION_MAJOR" -a $SYNOPKG_DSM_VERSION_MAJOR -ge 4 ]; then 
+			${DSM_INDEX_DEL} ${phpPgAdminUI}/index.conf
+		fi
+		if [ ! -z "$SYNOPKG_PKGNAME" ]; then
+			rm -f ${DESKTOP}
+		fi
+		;;
+	restart) # do nothing
+		;;
+	status)
+		if [ ! -f "${SZD_PGA}/enabled" ]; then
+			exit 1
+		fi
+		;;
+	log)
+		LOGFILE="/tmp/phpPgAdmin.log"
+		grep "phpPgAdmin:" /var/log/messages > ${LOGFILE}
+		if [ $? -eq 0 ]; then
+			echo "${LOGFILE}"
+		fi
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart|status|log}" >&2
+		exit 1
+		;;
+esac
+
+exit 0

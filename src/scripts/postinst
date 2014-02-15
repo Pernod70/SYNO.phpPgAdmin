@@ -1,0 +1,26 @@
+#!/bin/sh
+
+PACKAGE_NAME=$SYNOPKG_PKGNAME
+PACKAGE_DEST=$SYNOPKG_PKGDEST
+PKG_STATUS=$SYNOPKG_PKG_STATUS
+PACKAGE_DIR="/var/packages/phpPgAdmin"
+PG_APACHE_CONF="SYNO.SDS.phpPgAdmin.conf"
+SITES_ENABLED_USER_DIR="/usr/syno/etc/sites-enabled-user"
+
+insert_apache_config()
+{
+	if [ -d $SITES_ENABLED_USER_DIR ]; then
+		cp -f $PACKAGE_DIR"/target/etc/"$PG_APACHE_CONF $SITES_ENABLED_USER_DIR
+	fi
+}
+
+insert_apache_config
+
+# Move phpPgAdmin files from @appstore to phpsrc
+rm -rf /usr/syno/synoman/phpsrc/phpPgAdmin
+mv /var/packages/phpPgAdmin/target/phpPgAdmin /usr/syno/synoman/phpsrc/phpPgAdmin
+
+# Set file permissions
+chmod 755 -R /usr/syno/synoman/phpsrc/phpPgAdmin
+
+exit 0

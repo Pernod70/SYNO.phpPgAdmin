@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm -rf /usr/syno/synoman/phpsrc/phpPgAdmin
+
+exit 0

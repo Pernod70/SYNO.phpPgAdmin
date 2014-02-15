@@ -1,0 +1,15 @@
+{
+	".url": {
+		"SYNO.SDS.phpPgAdmin": {
+			"type": "url",
+			"allUsers": true,
+			"title": "app:app_name",
+			"desc": "app:description",
+			"icon": "images/phpPgAdmin_{0}.png",
+			"texts": "texts",
+			"protocol": "http",
+			"url": "/phpPgAdmin/",
+			"port": "80"
+		}
+	}
+}

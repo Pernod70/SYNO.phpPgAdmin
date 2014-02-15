@@ -1,0 +1,13 @@
+#!/bin/sh
+
+PG_APACHE_CONF="SYNO.SDS.phpPgAdmin.conf"
+SITES_ENABLED_USER_DIR="/usr/syno/etc/sites-enabled-user"
+
+remove_apache_config()
+{
+	rm $SITES_ENABLED_USER_DIR/$PG_APACHE_CONF
+}
+
+remove_apache_config
+
+exit 0
