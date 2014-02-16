@@ -8,6 +8,6 @@ tar -czf package.tgz -X exclude.txt desktop etc phpPgAdmin ui
 
 chown -R root:root scripts CHANGELOG LICENSE INFO package.tgz PACKAGE_ICON.PNG
 chmod -R 755 *
-tar -cvf ../phpPgAdmin-5.0.4-002.spk -X exclude.txt scripts CHANGELOG LICENSE INFO package.tgz PACKAGE_ICON.PNG
+tar -cvf ../spk/phpPgAdmin-5.1.0-002.spk -X exclude.txt scripts CHANGELOG LICENSE INFO package.tgz PACKAGE_ICON.PNG
 
 exit 0
