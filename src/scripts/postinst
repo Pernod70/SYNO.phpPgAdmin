@@ -5,7 +5,7 @@ PACKAGE_DEST=$SYNOPKG_PKGDEST
 PKG_STATUS=$SYNOPKG_PKG_STATUS
 PACKAGE_DIR="/var/packages/phpPgAdmin"
 PG_APACHE_CONF="SYNO.SDS.phpPgAdmin.conf"
-SITES_ENABLED_USER_DIR="/usr/syno/etc/sites-enabled-user"
+SITES_ENABLED_USER_DIR="/etc/httpd/sites-enabled-user"
 
 insert_apache_config()
 {

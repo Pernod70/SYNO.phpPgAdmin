@@ -11,7 +11,7 @@
 	// indexed from zero upwards.
 
 	// Display name for the server on the login screen
-	$conf['servers'][0]['desc'] = 'PostgreSQL';
+	$conf['servers'][0]['desc'] = 'PostgreSQL by Synology';
 
 	// Hostname or IP address for server.  Use '' for UNIX domain socket.
 	// use 'localhost' for TCP/IP connection on this computer
